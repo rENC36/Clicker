@@ -1,0 +1,9 @@
+function init(self)
+	self.money_node = gui.get_node("money_text")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("update_money_ui") then
+		gui.set_text(self.money_node, tostring(message.money))
+	end
+end

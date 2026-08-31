@@ -1,2 +1,22 @@
 name: "main"
 scale_along_z: 0
+embedded_instances {
+  id: "main"
+  data: "components {\n"
+  "  id: \"main\"\n"
+  "  component: \"/main/main.script\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"interaction\"\n"
+  "  component: \"/ui/interaction.gui\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "factories"
+  data: "components {\n"
+  "  id: \"card_factory\"\n"
+  "  component: \"/factories/card_factory.factory\"\n"
+  "}\n"
+  ""
+}

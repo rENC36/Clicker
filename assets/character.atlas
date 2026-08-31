@@ -1,0 +1,10 @@
+images {
+  image: "/assets/character_images/Sakura.png"
+}
+images {
+  image: "/assets/character_images/Zero Two.png"
+}
+images {
+  image: "/assets/character_images/MergedHero.png"
+}
+extrude_borders: 2

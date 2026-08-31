@@ -20,5 +20,4 @@ show_made_with_defold = 0
 
 [project]
 title = Clicker
-dependencies#0 = https://github.com/defold/extension-poki-sdk/archive/refs/heads/main.zip
 

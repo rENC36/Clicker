@@ -1,18 +1,15 @@
 -- save.lua
 
-local M = {}
+local constants = require("utility.constants")
 
-M.APP_NAME = "my_game"
+local M = {}
 
 local cache = {}
 
 local function get_path(name)
-	return sys.get_save_file(M.APP_NAME, name)
+	return sys.get_save_file(constants.APP_NAME, name)
 end
 
--- @param name string  Имя файла (без расширения)
--- @param data table   Данные для сохранения
--- @return boolean     true если успешно
 function M.save(name, data)
 	assert(type(name) == "string", "name must be a string")
 	assert(type(data) == "table", "data must be a table")
@@ -21,7 +18,7 @@ function M.save(name, data)
 	local success = sys.save(path, data)
 
 	if success then
-		cache[name] = data   -- обновляем кэш
+		cache[name] = data
 	else
 		print("Save error:", name)
 	end
@@ -29,11 +26,9 @@ function M.save(name, data)
 	return success
 end
 
--- @param name string
--- @param default table|nil  Что вернуть, если файла нет (по умолчанию {})
--- @return table
 function M.load(name, default)
 	assert(type(name) == "string", "name must be a string")
+
 	if cache[name] then
 		return cache[name]
 	end
@@ -52,14 +47,12 @@ function M.load(name, default)
 	return data
 end
 
--- @param name string
--- @return boolean  true если файл удалён (или его не было)
 function M.delete(name)
 	assert(type(name) == "string", "name must be a string")
 
 	local path = get_path(name)
 	cache[name] = nil
-	
+
 	local success, err = os.remove(path)
 	if not success and err then
 		return true
