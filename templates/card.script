@@ -6,8 +6,8 @@ function init(self)
 	self.dragging = false
 	self.offset = vmath.vector3(0, 0, 0)
 
-	self.half_w = 75
-	self.half_h = 100
+	self.half_w = 315
+	self.half_h = 470
 	self.merge_radius = 150 
 
 	self.my_key = tostring(go.get_id())
