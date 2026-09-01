@@ -12,6 +12,10 @@ embedded_components {
   "  texture: \"/assets/background.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 0.5
+    y: 0.5
+  }
 }
 embedded_components {
   id: "card_text"
@@ -31,11 +35,7 @@ embedded_components {
   ""
   position {
     x: -2.0
-    y: 400.0
-  }
-  scale {
-    x: 5.0
-    y: 5.0
+    y: 211.0
   }
 }
 embedded_components {
@@ -50,5 +50,9 @@ embedded_components {
   ""
   position {
     z: 0.5
+  }
+  scale {
+    x: 0.5
+    y: 0.5
   }
 }

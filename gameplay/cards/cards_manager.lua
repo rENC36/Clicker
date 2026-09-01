@@ -1,29 +1,32 @@
 local cards_data = require("gameplay.cards.cards_data")
 local constants = require("utility.constants")
-local save = require("utility.save")
+local player = require("utility.player")
+local press = require("utility.press_animator")
 
 local M = {}
 
 M.active_cards = {}
-M.money = 0
+M.dragging_key = nil
 
-function M.load_money()
-	local data = save.load("player_save", { money = 0 })
-	M.money = data.money or 0
-end
-
-function M.save_money()
-	save.save("player_save", { money = M.money })
+function M.get_money()
+	return player.get_money()
 end
 
 function M.add_money(amount)
-	M.money = M.money + amount
-	M.save_money()
-	msg.post(constants.MAIN_SCRIPT, "update_money_ui", { money = M.money })
+	player.add_money(amount)
+	msg.post(constants.INTERACTION, "update_money_ui", { money = player.get_money() })
 end
 
-function M.get_money()
-	return M.money
+function M.is_dragging()
+	return M.dragging_key ~= nil
+end
+
+function M.set_dragging(key)
+	M.dragging_key = key
+end
+
+function M.clear_dragging()
+	M.dragging_key = nil
 end
 
 function M.get(id)
@@ -73,12 +76,43 @@ function M.get_active_cards()
 	return M.active_cards
 end
 
+function M.get_random_spawn_pos()
+	local x = math.random(-350, 350)
+	local y = math.random(-200, 150)
+	return vmath.vector3(x, y, 0)
+end
+
+function M.buy_card(position)
+	local price = player.get_shop_price()
+
+	if player.get_money() < price then
+		return false
+	end
+
+	local cards = constants.STARTER_CARDS
+	local random_id = cards[math.random(1, #cards)]
+
+	player.add_money(-price)
+	msg.post(constants.MAIN_SCRIPT, "update_money_ui", { money = player.get_money() })
+
+	position = position or M.get_random_spawn_pos()
+	local card_url = M.create(random_id, position)
+
+	if card_url then
+		M.save_field()
+		return true
+	end
+
+	player.add_money(price)
+	msg.post(constants.MAIN_SCRIPT, "update_money_ui", { money = player.get_money() })
+	return false
+end
+
 function M.try_merge(key1, key2)
 	local card1 = M.active_cards[key1]
 	local card2 = M.active_cards[key2]
 
 	if not card1 or not card2 then
-		print("Merge failed: card not found")
 		return false
 	end
 
@@ -89,15 +123,46 @@ function M.try_merge(key1, key2)
 		local pos2 = go.get_position(card2.url)
 		local mid_pos = (pos1 + pos2) * 0.5
 
+		press.reset(card1.url)
+		press.reset(card2.url)
+
 		M.destroy(card1.url)
 		M.destroy(card2.url)
-		M.create(result_id, mid_pos)
 
+		local new_card = M.create(result_id, mid_pos)
+		if new_card then
+			press.reset(new_card)
+		end
+
+		M.clear_dragging()
+		M.save_field()     
+		        
 		print("Merge SUCCESS! Created:", result_id)
 		return true
 	end
 
 	return false
+end
+
+function M.save_field()
+	local list = {}
+	for _, card_info in pairs(M.active_cards) do
+		local pos = go.get_position(card_info.url)
+		table.insert(list, {
+			id = card_info.data.id,
+			x = pos.x,
+			y = pos.y,
+			z = pos.z
+		})
+	end
+	player.set_field_cards(list)
+end
+
+function M.load_field()
+	local list = player.get_field_cards()
+	for _, item in ipairs(list) do
+		M.create(item.id, vmath.vector3(item.x, item.y, item.z or 0))
+	end
 end
 
 return M

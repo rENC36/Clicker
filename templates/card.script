@@ -1,14 +1,15 @@
 local cards_manager = require("gameplay.cards.cards_manager")
-local cards_data = require("gameplay.cards.cards_data")
+local constants = require("utility.constants")
+local press = require("utility.press_animator")
 
 function init(self)
 	self.data = nil
 	self.dragging = false
 	self.offset = vmath.vector3(0, 0, 0)
 
-	self.half_w = 315
-	self.half_h = 470
-	self.merge_radius = 150 
+	self.half_w = constants.half_w
+	self.half_h = constants.half_h
+	self.merge_radius = constants.merge_radius 
 
 	self.my_key = tostring(go.get_id())
 
@@ -41,6 +42,10 @@ function on_input(self, action_id, action)
 	local mouse = vmath.vector3(action.x, action.y, 0)
 
 	if action.pressed then
+		if cards_manager.is_dragging() then
+			return
+		end
+
 		local dx = math.abs(mouse.x - pos.x)
 		local dy = math.abs(mouse.y - pos.y)
 
@@ -49,13 +54,21 @@ function on_input(self, action_id, action)
 			self.is_click = true
 			self.start_mouse = vmath.vector3(mouse)
 			self.offset = pos - mouse
+
+			cards_manager.set_dragging(self.my_key)
+			press.down(".")
 		end
 
 	elseif action.released then
+		if self.dragging then
+			press.up(".")
+			cards_manager.clear_dragging()
+			cards_manager.save_field()
+		end
+
 		if self.is_click and self.data then
 			local reward = self.data.reward or 1
 			cards_manager.add_money(reward)
-			print("Clicked! +" .. reward .. " money. Total: " .. cards_manager.get_money())
 		end
 
 		self.dragging = false

@@ -1,16 +1,27 @@
-local cards = require("gameplay.cards.cards_manager")
+local player = require("utility.player")
+local cards_manager = require("gameplay.cards.cards_manager")
+local constants = require("utility.constants")
 
 function init(self)
-	cards.load_money()
-	cards.create("Zero Two", vmath.vector3(650, 500, 0))
-	cards.create("Sakura", vmath.vector3(1300, 500, 0))
+	player.load()
+	cards_manager.load_field()
 
-	msg.post("#interaction", "update_money_ui", { money = cards.get_money() })
+	msg.post("#interaction", "update_money_ui", { money = cards_manager.get_money() })
+	
+	window.set_listener(function(_, event, data)
+		if event == window.WINDOW_EVENT_FOCUS_LOST then
+			cards_manager.save_field()
+			player.save()
+		end
+	end)
+
 	print("init")
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("update_money_ui") then
-		msg.post("#interaction", "update_money_ui", message)
+	if message_id == hash("buy_card") then
+		local x = math.random(200, 1700)
+		local y = math.random(425, 725)
+		cards_manager.buy_card(vmath.vector3(x, y, 0))
 	end
 end

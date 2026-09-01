@@ -23,5 +23,23 @@ nodes {
   id: "money_text"
   inherit_alpha: true
 }
+nodes {
+  position {
+    x: 1845.0
+    y: 594.0
+  }
+  scale {
+    x: 0.655659
+    y: 1.3203
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "buy_button"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
