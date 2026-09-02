@@ -12,8 +12,18 @@ M.half_w = 145
 M.half_h = 215
 M.merge_radius = 100 
 
-M.STARTER_CARDS = { "Zero Two", "Sakura" }
+M.STARTER_CARDS = { "Zero Two" }
 M.CARD_BUY_PRICE = 50 
+
+M.MAX_FIELD_CARDS = 10
+
+M.CARD_IMAGE_LOCAL_Z = 0.02
+
+M.REWARD_POPUP_LOCAL_Z = 0.03
+M.REWARD_POPUP_RISE = 80
+M.REWARD_POPUP_DURATION = 0.5
+
+M.DRAG_Z = 0.5
 
 M.SAVE_NAME = "player_save"
 
@@ -21,7 +31,6 @@ M.DEFAULT_PLAYER = {
 	money = 0,
 	field_cards = {
 		{ id = "Zero Two", x = 1250, y = 500, z = 0 },
-		{ id = "Sakura",   x = 750,  y = 500, z = 0 },
 	},
 	shop_rarity = "common",
 	shop_price = 50,

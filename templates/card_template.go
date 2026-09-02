@@ -49,10 +49,25 @@ embedded_components {
   "}\n"
   ""
   position {
-    z: 0.5
+    z: 0.05
   }
   scale {
     x: 0.5
     y: 0.5
+  }
+}
+embedded_components {
+  id: "reward_text"
+  type: "label"
+  data: "size {\n"
+  "  x: 128.0\n"
+  "  y: 32.0\n"
+  "}\n"
+  "text: \"Label\"\n"
+  "font: \"/builtins/fonts/default.font\"\n"
+  "material: \"/builtins/fonts/label-df.material\"\n"
+  ""
+  position {
+    y: 257.0
   }
 }

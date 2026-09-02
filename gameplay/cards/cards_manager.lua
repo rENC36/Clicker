@@ -1,4 +1,5 @@
 local cards_data = require("gameplay.cards.cards_data")
+local field_counter = require("gameplay.cards.field_counter")
 local constants = require("utility.constants")
 local player = require("utility.player")
 local press = require("utility.press_animator")
@@ -39,6 +40,17 @@ function M.get_all() return cards_data.get_all() end
 function M.get_by_rarity(rarity) return cards_data.get_by_filter(function(c) return c.rarity == rarity end) end
 function M.get_by_type(type) return cards_data.get_by_filter(function(c) return c.type == type end) end
 
+function M.update_field_ui()
+	msg.post(constants.INTERACTION, "update_field_ui", {
+		count = field_counter.get_count(M.active_cards),
+		max = field_counter.get_max()
+	})
+end
+
+function M.is_field_full()
+	return field_counter.is_full(M.active_cards)
+end
+
 function M.create(id, position, parent)
 	local data = M.get(id)
 	if not data then 
@@ -62,6 +74,9 @@ function M.create(id, position, parent)
 	end
 
 	msg.post(card_url, "setup_card", data)
+
+	M.update_field_ui()
+
 	return card_url
 end
 
@@ -70,6 +85,8 @@ function M.destroy(card_url)
 	local card_key = tostring(card_url)
 	M.active_cards[card_key] = nil
 	go.delete(card_url)
+
+	M.update_field_ui()
 end
 
 function M.get_active_cards()
@@ -83,6 +100,11 @@ function M.get_random_spawn_pos()
 end
 
 function M.buy_card(position)
+	if M.is_field_full() then
+		msg.post(constants.INTERACTION, "field_full")
+		return false
+	end
+
 	local price = player.get_shop_price()
 
 	if player.get_money() < price then
@@ -93,7 +115,7 @@ function M.buy_card(position)
 	local random_id = cards[math.random(1, #cards)]
 
 	player.add_money(-price)
-	msg.post(constants.MAIN_SCRIPT, "update_money_ui", { money = player.get_money() })
+	msg.post(constants.INTERACTION, "update_money_ui", { money = player.get_money() })
 
 	position = position or M.get_random_spawn_pos()
 	local card_url = M.create(random_id, position)
@@ -104,7 +126,7 @@ function M.buy_card(position)
 	end
 
 	player.add_money(price)
-	msg.post(constants.MAIN_SCRIPT, "update_money_ui", { money = player.get_money() })
+	msg.post(constants.INTERACTION, "update_money_ui", { money = player.get_money() })
 	return false
 end
 
@@ -122,6 +144,7 @@ function M.try_merge(key1, key2)
 		local pos1 = go.get_position(card1.url)
 		local pos2 = go.get_position(card2.url)
 		local mid_pos = (pos1 + pos2) * 0.5
+		mid_pos.z = 0
 
 		press.reset(card1.url)
 		press.reset(card2.url)
@@ -136,7 +159,7 @@ function M.try_merge(key1, key2)
 
 		M.clear_dragging()
 		M.save_field()     
-		        
+
 		print("Merge SUCCESS! Created:", result_id)
 		return true
 	end
@@ -152,7 +175,7 @@ function M.save_field()
 			id = card_info.data.id,
 			x = pos.x,
 			y = pos.y,
-			z = pos.z
+			z = 0
 		})
 	end
 	player.set_field_cards(list)

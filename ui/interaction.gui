@@ -41,5 +41,35 @@ nodes {
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
+nodes {
+  position {
+    x: 882.0
+    y: 58.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "<text>"
+  font: "default"
+  id: "field_counter_text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 1119.0
+    y: 58.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "<text>"
+  font: "default"
+  id: "field_hint_text"
+  inherit_alpha: true
+}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

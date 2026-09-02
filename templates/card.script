@@ -16,8 +16,39 @@ function init(self)
 	self.is_click = false
 	self.start_mouse = nil
 	self.click_threshold = 15
+	
+	local ok, reward_pos = pcall(go.get, "#reward_text", "position")
+	if ok then
+		self.has_reward_text = true
+		self.reward_text_base_pos = vmath.vector3(reward_pos.x, reward_pos.y, constants.REWARD_POPUP_LOCAL_Z)
+		go.set("#reward_text", "position", self.reward_text_base_pos)
+		go.set("#reward_text", "color", vmath.vector4(1, 1, 1, 0))
+	else
+		self.has_reward_text = false
+		print("WARN: 'reward_text' component not found on card.go — add a Label component with id 'reward_text' to see the '+reward' popup")
+	end
 
 	msg.post(".", "acquire_input_focus")
+end
+
+local function show_reward_popup(self, reward)
+	if not self.has_reward_text then return end
+
+	go.cancel_animations("#reward_text", "position")
+	go.cancel_animations("#reward_text", "color")
+
+	go.set("#reward_text", "position", self.reward_text_base_pos)
+	go.set("#reward_text", "color", vmath.vector4(1, 1, 1, 1))
+	label.set_text("#reward_text", "+" .. tostring(reward))
+
+	local target_pos = vmath.vector3(
+		self.reward_text_base_pos.x,
+		self.reward_text_base_pos.y + constants.REWARD_POPUP_RISE,
+		self.reward_text_base_pos.z
+	)
+
+	go.animate("#reward_text", "position", go.PLAYBACK_ONCE_FORWARD, target_pos, go.EASING_OUTQUAD, constants.REWARD_POPUP_DURATION)
+	go.animate("#reward_text", "color", go.PLAYBACK_ONCE_FORWARD, vmath.vector4(1, 1, 1, 0), go.EASING_INQUAD, constants.REWARD_POPUP_DURATION)
 end
 
 function on_message(self, message_id, message, sender)
@@ -25,6 +56,9 @@ function on_message(self, message_id, message, sender)
 		self.data = message
 		if message.image then
 			sprite.play_flipbook("#card_image", hash(message.image))
+			
+			local image_pos = go.get("#card_image", "position")
+			go.set("#card_image", "position", vmath.vector3(image_pos.x, image_pos.y, constants.CARD_IMAGE_LOCAL_Z))
 		end
 		if message.name then
 			label.set_text("#card_text", message.name)
@@ -57,18 +91,25 @@ function on_input(self, action_id, action)
 
 			cards_manager.set_dragging(self.my_key)
 			press.down(".")
+			
+			go.set_position(vmath.vector3(pos.x, pos.y, constants.DRAG_Z))
 		end
 
 	elseif action.released then
 		if self.dragging then
 			press.up(".")
 			cards_manager.clear_dragging()
+			
+			local p = go.get_position()
+			go.set_position(vmath.vector3(p.x, p.y, 0))
+
 			cards_manager.save_field()
 		end
 
 		if self.is_click and self.data then
 			local reward = self.data.reward or 1
 			cards_manager.add_money(reward)
+			show_reward_popup(self, reward)
 		end
 
 		self.dragging = false
@@ -76,7 +117,7 @@ function on_input(self, action_id, action)
 		self.start_mouse = nil
 
 	elseif self.dragging then
-		go.set_position(mouse + self.offset)
+		go.set_position(vmath.vector3(mouse.x + self.offset.x, mouse.y + self.offset.y, constants.DRAG_Z))
 
 		if self.start_mouse and vmath.length(mouse - self.start_mouse) > self.click_threshold then
 			self.is_click = false
