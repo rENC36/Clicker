@@ -4,8 +4,8 @@ fonts {
   font: "/builtins/fonts/default.font"
 }
 fonts {
-  name: "RubikOneR"
-  font: "/assets/Fonts/RubikR.font"
+  name: "RubikR"
+  font: "/assets/fonts/RubikR.font"
 }
 textures {
   name: "GUI_assets"
@@ -42,7 +42,7 @@ nodes {
   }
   type: TYPE_TEXT
   text: "<text>"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "field_counter_text"
   inherit_alpha: true
   alpha: 0.7
@@ -73,7 +73,7 @@ nodes {
   type: TYPE_TEXT
   text: "1000\n"
   ""
-  font: "RubikOneR"
+  font: "RubikR"
   id: "money_text"
   pivot: PIVOT_E
   parent: "top_board 1.1"
@@ -180,7 +180,7 @@ nodes {
   }
   type: TYPE_TEXT
   text: "4/30"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "col_counter"
   parent: "btn_collection"
   inherit_alpha: true
@@ -288,7 +288,7 @@ nodes {
   }
   type: TYPE_TEXT
   text: "\320\232\320\243\320\237\320\230\320\242\320\254"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "buy_text"
   parent: "buy_button"
   inherit_alpha: true
@@ -308,7 +308,7 @@ nodes {
   }
   type: TYPE_TEXT
   text: "10"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "x2_text3"
   parent: "bg_buy"
   inherit_alpha: true
@@ -372,7 +372,7 @@ nodes {
   type: TYPE_TEXT
   text: "\320\237\320\276\321\201\320\274\320\276\321\202\321\200\320\265\321\202\321\214\n"
   "\321\200\320\265\320\272\320\273\320\260\320\274\321\203"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "ad_text"
   pivot: PIVOT_W
   parent: "btn_ad"
@@ -407,7 +407,7 @@ nodes {
   }
   type: TYPE_TEXT
   text: "x2"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "x2_text"
   parent: "bg_ad"
   inherit_alpha: true
@@ -441,7 +441,7 @@ nodes {
   }
   type: TYPE_TEXT
   text: "\320\267\320\260 \320\272\320\273\320\270\320\272"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "x2_text1"
   parent: "bg_ad"
   inherit_alpha: true
@@ -461,7 +461,7 @@ nodes {
   }
   type: TYPE_TEXT
   text: "\320\275\320\260 60 \321\201\320\265\320\272\321\203\320\275\320\264"
-  font: "RubikOneR"
+  font: "RubikR"
   id: "x2_text2"
   parent: "bg_ad"
   inherit_alpha: true
