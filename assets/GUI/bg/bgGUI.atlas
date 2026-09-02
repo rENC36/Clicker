@@ -1,0 +1,4 @@
+images {
+  image: "/assets/GUI/bg/background.jpg"
+}
+extrude_borders: 2

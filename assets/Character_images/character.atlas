@@ -1,0 +1,91 @@
+images {
+  image: "/assets/Character_images/1_Common/1_com.png"
+}
+images {
+  image: "/assets/Character_images/1_Common/2_com.png"
+}
+images {
+  image: "/assets/Character_images/1_Common/3_com.png"
+}
+images {
+  image: "/assets/Character_images/1_Common/4_com.png"
+}
+images {
+  image: "/assets/Character_images/1_Common/5_com.png"
+}
+images {
+  image: "/assets/Character_images/1_Common/6_com.png"
+}
+images {
+  image: "/assets/Character_images/2_Rare/1_rare.png"
+}
+images {
+  image: "/assets/Character_images/2_Rare/2_rare.png"
+}
+images {
+  image: "/assets/Character_images/2_Rare/3_rare.png"
+}
+images {
+  image: "/assets/Character_images/2_Rare/4_rare.png"
+}
+images {
+  image: "/assets/Character_images/2_Rare/5_rare.png"
+}
+images {
+  image: "/assets/Character_images/2_Rare/6_rare.png"
+}
+images {
+  image: "/assets/Character_images/3_Epic/1_epic.png"
+}
+images {
+  image: "/assets/Character_images/3_Epic/2_epic.png"
+}
+images {
+  image: "/assets/Character_images/3_Epic/3_epic.png"
+}
+images {
+  image: "/assets/Character_images/3_Epic/4_epic.png"
+}
+images {
+  image: "/assets/Character_images/3_Epic/5_epic.png"
+}
+images {
+  image: "/assets/Character_images/3_Epic/6_epic.png"
+}
+images {
+  image: "/assets/Character_images/5_Legendary/1_leg.png"
+}
+images {
+  image: "/assets/Character_images/5_Legendary/2_leg.png"
+}
+images {
+  image: "/assets/Character_images/5_Legendary/3_leg.png"
+}
+images {
+  image: "/assets/Character_images/5_Legendary/4_leg.png"
+}
+images {
+  image: "/assets/Character_images/5_Legendary/5_leg.png"
+}
+images {
+  image: "/assets/Character_images/5_Legendary/6_leg.png"
+}
+images {
+  image: "/assets/Character_images/6_Secret/1_sec.png"
+}
+images {
+  image: "/assets/Character_images/6_Secret/2_sec.png"
+}
+images {
+  image: "/assets/Character_images/6_Secret/3_sec.png"
+}
+images {
+  image: "/assets/Character_images/6_Secret/4_sec.png"
+}
+images {
+  image: "/assets/Character_images/6_Secret/5_sec.png"
+}
+images {
+  image: "/assets/Character_images/6_Secret/6_sec.png"
+}
+extrude_borders: 2

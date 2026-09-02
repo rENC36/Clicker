@@ -1,0 +1,85 @@
+images {
+  image: "/assets/GUI/UI/bottom_board.png"
+}
+images {
+  image: "/assets/GUI/UI/btn_ad.png"
+}
+images {
+  image: "/assets/GUI/UI/btn_buy.png"
+}
+images {
+  image: "/assets/GUI/UI/btn_circle.png"
+}
+images {
+  image: "/assets/GUI/UI/btn_left.png"
+}
+images {
+  image: "/assets/GUI/UI/closed.png"
+}
+images {
+  image: "/assets/GUI/UI/img_ad.png"
+}
+images {
+  image: "/assets/GUI/UI/img_coins.png"
+}
+images {
+  image: "/assets/GUI/UI/img_collection.png"
+}
+images {
+  image: "/assets/GUI/UI/img_lang_ch.png"
+}
+images {
+  image: "/assets/GUI/UI/img_lang_en.png"
+}
+images {
+  image: "/assets/GUI/UI/img_lang_jp.png"
+}
+images {
+  image: "/assets/GUI/UI/img_lang_port.png"
+}
+images {
+  image: "/assets/GUI/UI/img_lang_rus.png"
+}
+images {
+  image: "/assets/GUI/UI/img_lang_sp.png"
+}
+images {
+  image: "/assets/GUI/UI/img_lang_turk.png"
+}
+images {
+  image: "/assets/GUI/UI/img_leaderboard.png"
+}
+images {
+  image: "/assets/GUI/UI/img_music_off.png"
+}
+images {
+  image: "/assets/GUI/UI/img_music_on.png"
+}
+images {
+  image: "/assets/GUI/UI/img_prestige.png"
+}
+images {
+  image: "/assets/GUI/UI/img_sfx_off.png"
+}
+images {
+  image: "/assets/GUI/UI/img_sfx_on.png"
+}
+images {
+  image: "/assets/GUI/UI/left_board.png"
+}
+images {
+  image: "/assets/GUI/UI/notification.png"
+}
+images {
+  image: "/assets/GUI/UI/right_ad_board.png"
+}
+images {
+  image: "/assets/GUI/UI/right_board.png"
+}
+images {
+  image: "/assets/GUI/UI/right_buy_board.png"
+}
+images {
+  image: "/assets/GUI/UI/top_board.png"
+}
+extrude_borders: 2

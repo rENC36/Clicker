@@ -13,8 +13,8 @@ embedded_components {
   "}\n"
   ""
   scale {
-    x: 0.5
-    y: 0.5
+    x: 0.4
+    y: 0.4
   }
 }
 embedded_components {
@@ -35,7 +35,7 @@ embedded_components {
   ""
   position {
     x: -2.0
-    y: 211.0
+    y: 159.0
     z: 0.03
   }
 }
@@ -44,17 +44,23 @@ embedded_components {
   type: "sprite"
   data: "default_animation: \"1_com\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
+  "size {\n"
+  "  x: 445.0\n"
+  "  y: 750.0\n"
+  "}\n"
+  "size_mode: SIZE_MODE_MANUAL\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/Atlases/character.atlas\"\n"
+  "  texture: \"/assets/Character_images/character.atlas\"\n"
   "}\n"
   ""
   position {
+    y: -16.0
     z: 0.02
   }
   scale {
-    x: 0.5
-    y: 0.5
+    x: 0.4
+    y: 0.4
   }
 }
 embedded_components {
@@ -69,7 +75,7 @@ embedded_components {
   "material: \"/builtins/fonts/label-df.material\"\n"
   ""
   position {
-    y: 257.0
+    y: 210.0
     z: 0.04
   }
 }

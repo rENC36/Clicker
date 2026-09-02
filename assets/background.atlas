@@ -1,7 +1,0 @@
-images {
-  image: "/assets/background/common.png"
-}
-images {
-  image: "/assets/background/rare.png"
-}
-extrude_borders: 2

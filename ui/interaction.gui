@@ -5,11 +5,11 @@ fonts {
 }
 fonts {
   name: "RubikOneR"
-  font: "/assets/fonts/RubikR.font"
+  font: "/assets/Fonts/RubikR.font"
 }
 textures {
   name: "GUI_assets"
-  texture: "/assets/GUI_Assets003/UI/GUI_assets.atlas"
+  texture: "/assets/GUI/UI/GUI_assets.atlas"
 }
 nodes {
   position {
