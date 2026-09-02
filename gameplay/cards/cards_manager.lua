@@ -10,6 +10,26 @@ M.active_cards = {}
 M.dragging_key = nil
 M.card_order = {}
 
+function M.get_top_card_at(x, y)
+	for index = #M.card_order, 1, -1 do
+		local key = M.card_order[index]
+		local card_info = M.active_cards[key]
+
+		if card_info then
+			local position = go.get_position(card_info.url)
+
+			local inside_x = math.abs(x - position.x) <= constants.half_w
+			local inside_y = math.abs(y - position.y) <= constants.half_h
+
+			if inside_x and inside_y then
+				return key
+			end
+		end
+	end
+
+	return nil
+end
+
 local function remove_from_order(key)
 	for index, order_key in ipairs(M.card_order) do
 		if order_key == key then
@@ -38,14 +58,14 @@ end
 end
 
 function M.bring_to_front(key)
-if not key or not M.active_cards[key] then
-	return
-end
+	if not key or not M.active_cards[key] then
+		return
+	end
 
-remove_from_order(key)
-table.insert(M.card_order, key)
+	remove_from_order(key)
+	table.insert(M.card_order, key)
 
-M.reorder_cards()
+	M.reorder_cards()
 end
 
 function M.get_money()
