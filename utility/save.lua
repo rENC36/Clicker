@@ -36,10 +36,11 @@ function M.load(name, default)
 	local path = get_path(name)
 	local ok, data = pcall(sys.load, path)
 
-	if not ok then
-		print("Load error (corrupted?):", name, data)
-		data = default or {}
-	elseif not next(data) then
+	if not ok or type(data) ~= "table" or next(data) == nil then
+		if not ok then
+			print("Load error:", name, data)
+		end
+
 		data = default or {}
 	end
 

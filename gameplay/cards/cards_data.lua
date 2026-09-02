@@ -1,35 +1,35 @@
 local M = {}
 
 M.cards = {
-	["Zero Two"] = {
-		id = "Zero Two", 
-		name = "Zero", 
-		image = "Zero Two", 
+	["1_com"] = {
+		id = "1_com", 
+		name = "Blossom", 
+		image = "1_com", 
 		rarity = "common",
 		reward = 10,
 	},
-	["Sakura"] = {
-		id = "Sakura", 
-		name = "Sakura", 
-		image = "Sakura", 
+	["2_com"] = {
+		id = "2_com", 
+		name = "The Boss", 
+		image = "2_com", 
 		rarity = "common",
 		reward = 15,
 	},
-	["MergedHero"] = {
-		id = "MergedHero", 
-		name = "MergedHero", 
-		image = "MergedHero", 
-		rarity = "rare",
+	["3_com"] = {
+		id = "3_com", 
+		name = "Fashionista", 
+		image = "3_com", 
+		rarity = "common",
 		reward = 50,
 	},
 }
 
 M.merges = {
-	["Zero Two"] = {
-		["Zero Two"] = "Sakura"
+	["1_com"] = {
+		["1_com"] = "2_com"
 	},
-	["Sakura"] = {
-		["Sakura"] = "MergedHero"
+	["2_com"] = {
+		["2_com"] = "3_com"
 	}
 }
 

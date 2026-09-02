@@ -6,25 +6,40 @@ local M = {}
 M.data = nil
 
 function M.load()
-	local loaded = save.load(constants.SAVE_NAME, constants.DEFAULT_PLAYER)
+	local loaded = save.load(
+	constants.SAVE_NAME,
+	constants.DEFAULT_PLAYER
+)
 
-	for k, v in pairs(constants.DEFAULT_PLAYER) do
-		if loaded[k] == nil then
-			loaded[k] = v
-		end
+for key, value in pairs(constants.DEFAULT_PLAYER) do
+	if loaded[key] == nil then
+		loaded[key] = value
 	end
+end
 
-	if loaded.settings == nil then
-		loaded.settings = constants.DEFAULT_PLAYER.settings
-	else
-		for k, v in pairs(constants.DEFAULT_PLAYER.settings) do
-			if loaded.settings[k] == nil then
-				loaded.settings[k] = v
-			end
-		end
+if type(loaded.field_cards) ~= "table" then
+	loaded.field_cards = {}
+end
+
+if type(loaded.unlocked_cards) ~= "table" then
+	loaded.unlocked_cards = {}
+end
+
+if type(loaded.unlocked_rainbow) ~= "table" then
+	loaded.unlocked_rainbow = {}
+end
+
+if type(loaded.settings) ~= "table" then
+	loaded.settings = {}
+end
+
+for key, value in pairs(constants.DEFAULT_PLAYER.settings) do
+	if loaded.settings[key] == nil then
+		loaded.settings[key] = value
 	end
+end
 
-	M.data = loaded
+M.data = loaded
 end
 
 function M.save()

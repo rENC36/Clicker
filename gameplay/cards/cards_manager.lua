@@ -8,6 +8,45 @@ local M = {}
 
 M.active_cards = {}
 M.dragging_key = nil
+M.card_order = {}
+
+local function remove_from_order(key)
+	for index, order_key in ipairs(M.card_order) do
+		if order_key == key then
+			table.remove(M.card_order, index)
+			return
+		end
+	end
+end
+
+function M.reorder_cards()
+	for index, key in ipairs(M.card_order) do
+		local card_info = M.active_cards[key]
+
+		if card_info then
+			local position = go.get_position(card_info.url)
+
+			local z = constants.CARD_BASE_Z
+			+ (index - 1) * constants.CARD_Z_STEP
+
+			go.set_position(
+			vmath.vector3(position.x, position.y, z),
+			card_info.url
+		)
+	end
+end
+end
+
+function M.bring_to_front(key)
+if not key or not M.active_cards[key] then
+	return
+end
+
+remove_from_order(key)
+table.insert(M.card_order, key)
+
+M.reorder_cards()
+end
 
 function M.get_money()
 	return player.get_money()
@@ -53,12 +92,14 @@ end
 
 function M.create(id, position, parent)
 	local data = M.get(id)
-	if not data then 
+
+	if not data then
 		print("ERROR: No data for card id:", id)
-		return nil 
+		return nil
 	end
 
 	position = position or vmath.vector3(0, 0, 0)
+
 	local card_url = factory.create(constants.CARD_FACTORY, position)
 
 	if not card_url then
@@ -67,13 +108,25 @@ function M.create(id, position, parent)
 	end
 
 	local card_key = tostring(card_url)
-	M.active_cards[card_key] = { url = card_url, data = data }
+
+	M.active_cards[card_key] = {
+		url = card_url,
+		data = data
+	}
+
+	table.insert(M.card_order, card_key)
+	M.reorder_cards()
 
 	if parent then
-		msg.post(card_url, "set_parent", { parent_id = parent })
+		msg.post(card_url, "set_parent", {
+			parent_id = parent
+		})
 	end
 
-	msg.post(card_url, "setup_card", data)
+	msg.post(card_url, "setup_card", {
+		card = data,
+		key = card_key
+	})
 
 	M.update_field_ui()
 
@@ -81,11 +134,19 @@ function M.create(id, position, parent)
 end
 
 function M.destroy(card_url)
-	if not card_url then return end
+	if not card_url then
+		return
+	end
+
 	local card_key = tostring(card_url)
+
+	remove_from_order(card_key)
+
 	M.active_cards[card_key] = nil
+
 	go.delete(card_url)
 
+	M.reorder_cards()
 	M.update_field_ui()
 end
 
@@ -94,8 +155,9 @@ function M.get_active_cards()
 end
 
 function M.get_random_spawn_pos()
-	local x = math.random(-350, 350)
-	local y = math.random(-200, 150)
+	local x = math.random(200, 1700)
+	local y = math.random(425, 725)
+
 	return vmath.vector3(x, y, 0)
 end
 
@@ -182,10 +244,29 @@ function M.save_field()
 end
 
 function M.load_field()
-	local list = player.get_field_cards()
-	for _, item in ipairs(list) do
-		M.create(item.id, vmath.vector3(item.x, item.y, item.z or 0))
+	for _, card_info in pairs(M.active_cards) do
+		if card_info.url then
+			go.delete(card_info.url)
+		end
 	end
+
+	M.active_cards = {}
+	M.dragging_key = nil
+
+	local list = player.get_field_cards()
+
+	for _, item in ipairs(list) do
+		if item.id then
+			M.create(
+			item.id,
+			vmath.vector3(
+			item.x or 0,
+			item.y or 0,
+			item.z or 0
+		)
+	)
+end
+end
 end
 
 return M

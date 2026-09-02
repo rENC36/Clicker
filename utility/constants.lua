@@ -12,18 +12,19 @@ M.half_w = 145
 M.half_h = 215
 M.merge_radius = 100 
 
-M.STARTER_CARDS = { "Zero Two" }
+M.STARTER_CARDS = { "1_com" }
 M.CARD_BUY_PRICE = 50 
 
 M.MAX_FIELD_CARDS = 10
 
-M.CARD_IMAGE_LOCAL_Z = 0.02
+M.CARD_BASE_Z = 0
+M.CARD_Z_STEP = 0.1
 
-M.REWARD_POPUP_LOCAL_Z = 0.03
+M.REWARD_POPUP_LOCAL_Z = 0.04
 M.REWARD_POPUP_RISE = 80
 M.REWARD_POPUP_DURATION = 0.5
 
-M.DRAG_Z = 0.5
+M.DRAG_Z = 0.9
 
 M.SAVE_NAME = "player_save"
 
@@ -37,7 +38,7 @@ M.HINT_FADE_OUT = 0.25
 M.DEFAULT_PLAYER = {
 	money = 0,
 	field_cards = {
-		{ id = "Zero Two", x = 1250, y = 500, z = 0 },
+		{ id = "1_com", x = 1250, y = 500, z = 0 },
 	},
 	shop_rarity = "common",
 	shop_price = 50,

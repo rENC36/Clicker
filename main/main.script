@@ -5,9 +5,12 @@ local constants = require("utility.constants")
 function init(self)
 	player.load()
 	cards_manager.load_field()
+	cards_manager.update_field_ui()
 
-	msg.post("#interaction", "update_money_ui", { money = cards_manager.get_money() })
-	
+	msg.post("#interaction", "update_money_ui", {
+		money = cards_manager.get_money()
+	})
+
 	window.set_listener(function(_, event, data)
 		if event == window.WINDOW_EVENT_FOCUS_LOST then
 			cards_manager.save_field()
@@ -20,8 +23,6 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("buy_card") then
-		local x = math.random(200, 1700)
-		local y = math.random(425, 725)
-		cards_manager.buy_card(vmath.vector3(x, y, 0))
+		cards_manager.buy_card()
 	end
 end

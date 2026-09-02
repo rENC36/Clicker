@@ -1,0 +1,16 @@
+images {
+  image: "/assets/Cards_bg/common.png"
+}
+images {
+  image: "/assets/Cards_bg/rare.png"
+}
+images {
+  image: "/assets/Cards_bg/epic.png"
+}
+images {
+  image: "/assets/Cards_bg/legendary.png"
+}
+images {
+  image: "/assets/Cards_bg/secret.png"
+}
+extrude_borders: 2

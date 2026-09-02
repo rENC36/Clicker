@@ -3,63 +3,18 @@ fonts {
   name: "default"
   font: "/builtins/fonts/default.font"
 }
-nodes {
-  position {
-    x: 955.0
-    y: 985.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-  }
-  type: TYPE_TEXT
-  text: "money: 1000\n"
-  ""
-  font: "default"
-  id: "money_text"
-  inherit_alpha: true
+fonts {
+  name: "RubikOneR"
+  font: "/assets/fonts/RubikR.font"
+}
+textures {
+  name: "GUI_assets"
+  texture: "/assets/GUI_Assets003/UI/GUI_assets.atlas"
 }
 nodes {
   position {
-    x: 1845.0
-    y: 594.0
-  }
-  scale {
-    x: 0.655659
-    y: 1.3203
-  }
-  size {
-    x: 200.0
-    y: 100.0
-  }
-  type: TYPE_BOX
-  id: "buy_button"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 882.0
-    y: 58.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-  }
-  type: TYPE_TEXT
-  text: "<text>"
-  font: "default"
-  id: "field_counter_text"
-  inherit_alpha: true
-}
-nodes {
-  position {
-    x: 1119.0
-    y: 58.0
+    x: 1225.0
+    y: 126.0
   }
   size {
     x: 200.0
@@ -69,6 +24,513 @@ nodes {
   text: "<text>"
   font: "default"
   id: "field_hint_text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 960.0
+    y: 80.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "<text>"
+  font: "RubikOneR"
+  id: "field_counter_text"
+  inherit_alpha: true
+  alpha: 0.7
+}
+nodes {
+  position {
+    x: 720.0
+    y: 980.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/top_board"
+  id: "top_board 1.1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 30.0
+  }
+  scale {
+    x: 1.2
+    y: 1.2
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "1000\n"
+  ""
+  font: "RubikOneR"
+  id: "money_text"
+  pivot: PIVOT_E
+  parent: "top_board 1.1"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 145.0
+  }
+  size {
+    x: 80.0
+    y: 80.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_coins"
+  id: "img_coins"
+  parent: "top_board 1.1"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 1180.0
+    y: 980.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/top_board"
+  id: "top_board 1.2"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 145.0
+  }
+  size {
+    x: 80.0
+    y: 80.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_prestige"
+  id: "img_prestige"
+  parent: "top_board 1.2"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 960.0
+    y: 54.0
+  }
+  size {
+    x: 2060.0
+    y: 112.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/bottom_board"
+  id: "bottom"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 100.0
+    y: 580.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/left_board"
+  id: "left_board"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 250.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_left"
+  id: "btn_collection"
+  parent: "left_board"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 5.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_collection"
+  id: "img_collection"
+  parent: "btn_collection"
+  inherit_alpha: true
+  alpha: 0.5
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "4/30"
+  font: "RubikOneR"
+  id: "col_counter"
+  parent: "btn_collection"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 120.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_left"
+  id: "btn_leaderboard"
+  parent: "left_board"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 5.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_leaderboard"
+  id: "img_leaderboard"
+  parent: "btn_leaderboard"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -250.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_left"
+  id: "btn_prestige"
+  parent: "left_board"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 5.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_prestige"
+  id: "box"
+  parent: "btn_prestige"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 1740.0
+    y: 580.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/right_board"
+  id: "right_board"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 120.0
+  }
+  size {
+    x: 250.0
+    y: 370.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/right_buy_board"
+  id: "bg_buy"
+  parent: "right_board"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 135.0
+  }
+  size {
+    x: 215.0
+    y: 80.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_buy"
+  id: "buy_button"
+  parent: "bg_buy"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 3.0
+  }
+  scale {
+    x: 0.9
+    y: 0.9
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "\320\232\320\243\320\237\320\230\320\242\320\254"
+  font: "RubikOneR"
+  id: "buy_text"
+  parent: "buy_button"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -20.0
+    y: -140.0
+  }
+  scale {
+    x: 0.8
+    y: 0.8
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "10"
+  font: "RubikOneR"
+  id: "x2_text3"
+  parent: "bg_buy"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 35.0
+    y: -140.0
+  }
+  size {
+    x: 45.0
+    y: 45.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_coins"
+  id: "img_coins 1.1"
+  parent: "bg_buy"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -190.0
+  }
+  size {
+    x: 250.0
+    y: 225.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/right_ad_board"
+  id: "bg_ad"
+  parent: "right_board"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 60.0
+  }
+  size {
+    x: 215.0
+    y: 80.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_ad"
+  id: "btn_ad"
+  parent: "bg_ad"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -85.0
+    y: 5.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "\320\237\320\276\321\201\320\274\320\276\321\202\321\200\320\265\321\202\321\214\n"
+  "\321\200\320\265\320\272\320\273\320\260\320\274\321\203"
+  font: "RubikOneR"
+  id: "ad_text"
+  pivot: PIVOT_W
+  parent: "btn_ad"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 75.0
+    y: 5.0
+  }
+  size {
+    x: 35.0
+    y: 35.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_ad"
+  id: "box1"
+  parent: "btn_ad"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -28.0
+  }
+  scale {
+    x: 0.8
+    y: 0.8
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "x2"
+  font: "RubikOneR"
+  id: "x2_text"
+  parent: "bg_ad"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 27.0
+  }
+  size {
+    x: 45.0
+    y: 45.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_coins"
+  id: "img_coins 1.2"
+  parent: "bg_ad"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -1.0
+    y: -35.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "\320\267\320\260 \320\272\320\273\320\270\320\272"
+  font: "RubikOneR"
+  id: "x2_text1"
+  parent: "bg_ad"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -1.0
+    y: -65.0
+  }
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "\320\275\320\260 60 \321\201\320\265\320\272\321\203\320\275\320\264"
+  font: "RubikOneR"
+  id: "x2_text2"
+  parent: "bg_ad"
+  inherit_alpha: true
+  alpha: 0.7
+}
+nodes {
+  position {
+    x: 100.0
+    y: 90.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_circle"
+  id: "btn_sound"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 70.0
+    y: 70.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_sfx_on"
+  id: "img_sound_on"
+  parent: "btn_sound"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 250.0
+    y: 70.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_circle"
+  id: "btn_music"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 70.0
+    y: 70.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_music_off"
+  id: "img_music_off"
+  parent: "btn_music"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 1800.0
+    y: 90.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/btn_circle"
+  id: "btn_lang"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 90.0
+    y: 90.0
+  }
+  type: TYPE_BOX
+  texture: "GUI_assets/img_lang_rus"
+  id: "img_lang"
+  parent: "btn_lang"
   inherit_alpha: true
 }
 material: "/builtins/materials/gui.material"

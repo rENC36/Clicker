@@ -9,7 +9,7 @@ embedded_components {
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/background.atlas\"\n"
+  "  texture: \"/assets/Cards_bg/background.atlas\"\n"
   "}\n"
   ""
   scale {
@@ -36,20 +36,21 @@ embedded_components {
   position {
     x: -2.0
     y: 211.0
+    z: 0.03
   }
 }
 embedded_components {
   id: "card_image"
   type: "sprite"
-  data: "default_animation: \"Zero Two\"\n"
+  data: "default_animation: \"1_com\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/character.atlas\"\n"
+  "  texture: \"/assets/Atlases/character.atlas\"\n"
   "}\n"
   ""
   position {
-    z: 0.05
+    z: 0.02
   }
   scale {
     x: 0.5
@@ -69,5 +70,6 @@ embedded_components {
   ""
   position {
     y: 257.0
+    z: 0.04
   }
 }

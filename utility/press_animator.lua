@@ -38,27 +38,43 @@ end
 
 function M.gui_down(node, opts)
 	opts = opts or {}
-	local scale    = opts.scale    or DEFAULTS.pressed_scale
-	local duration = opts.duration or DEFAULTS.press_duration
-	local easing   = opts.easing   or DEFAULTS.press_easing
 
-	gui.cancel_animations(node, "scale")
-	gui.animate(node, "scale", vmath.vector3(scale), easing, duration)
+	local scale = opts.scale or DEFAULTS.pressed_scale
+	local duration = opts.duration or DEFAULTS.press_duration
+	local easing = opts.easing or DEFAULTS.press_easing
+
+	gui.cancel_animations(node, gui.PROP_SCALE)
+
+	gui.animate(
+	node,
+	gui.PROP_SCALE,
+	vmath.vector3(scale),
+	easing,
+	duration
+)
 end
 
 function M.gui_up(node, opts)
-	opts = opts or {}
-	local scale    = opts.scale    or DEFAULTS.normal_scale
-	local duration = opts.duration or DEFAULTS.release_duration
-	local easing   = opts.easing   or DEFAULTS.release_easing
+opts = opts or {}
 
-	gui.cancel_animations(node, "scale")
-	gui.animate(node, "scale", vmath.vector3(scale), easing, duration)
+local scale = opts.scale or DEFAULTS.normal_scale
+local duration = opts.duration or DEFAULTS.release_duration
+local easing = opts.easing or DEFAULTS.release_easing
+
+gui.cancel_animations(node, gui.PROP_SCALE)
+
+gui.animate(
+node,
+gui.PROP_SCALE,
+vmath.vector3(scale),
+easing,
+duration
+)
 end
 
 function M.gui_reset(node, scale)
-	gui.cancel_animations(node, "scale")
-	gui.set_scale(node, vmath.vector3(scale or DEFAULTS.normal_scale))
+gui.cancel_animations(node, gui.PROP_SCALE)
+gui.set_scale(node, vmath.vector3(scale or DEFAULTS.normal_scale))
 end
 
 return M

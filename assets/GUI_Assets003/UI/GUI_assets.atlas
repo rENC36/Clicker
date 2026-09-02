@@ -1,0 +1,85 @@
+images {
+  image: "/assets/GUI_Assets003/UI/bottom_board.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/btn_ad.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/btn_buy.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/btn_circle.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/btn_left.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/closed.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_ad.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_coins.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_collection.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_lang_ch.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_lang_en.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_lang_jp.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_lang_port.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_lang_rus.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_lang_sp.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_lang_turk.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_leaderboard.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_music_off.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_music_on.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_sfx_off.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_sfx_on.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/left_board.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/notification.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/right_ad_board.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/right_board.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/right_buy_board.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/top_board.png"
+}
+images {
+  image: "/assets/GUI_Assets003/UI/img_prestige.png"
+}
+extrude_borders: 2
