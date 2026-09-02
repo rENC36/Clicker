@@ -3,29 +3,20 @@ local cards_manager = require("gameplay.cards.cards_manager")
 local constants = require("utility.constants")
 local press = require("utility.press_animator")
 
-local FLASH_COLOR = vmath.vector4(1, 0.25, 0.25, 1)
-local FLASH_DURATION = 0.12
-local HINT_TEXT = "Поле заполнено"
-local HINT_VISIBLE_TIME = 1.2
-local HINT_FADE_IN = 0.15
-local HINT_FADE_OUT = 0.25
-
--- Кратко подсвечивает node красным и возвращает исходный цвет
 local function flash_red(node, original_color)
 	gui.cancel_animations(node, gui.PROP_COLOR)
-	gui.animate(node, gui.PROP_COLOR, FLASH_COLOR, gui.EASING_OUTQUAD, FLASH_DURATION, 0, function()
-		gui.animate(node, gui.PROP_COLOR, original_color, gui.EASING_INQUAD, FLASH_DURATION)
+	gui.animate(node, gui.PROP_COLOR, constants.FLASH_COLOR, gui.EASING_OUTQUAD, constants.FLASH_DURATION, 0, function()
+		gui.animate(node, gui.PROP_COLOR, original_color, gui.EASING_INQUAD, constants.FLASH_DURATION)
 	end)
 end
 
--- Показывает подсказку "Поле заполнено" на короткое время
 local function show_hint(self)
 	gui.cancel_animations(self.hint_node, gui.PROP_COLOR)
 	gui.set_color(self.hint_node, vmath.vector4(1, 1, 1, 0))
 
-	gui.animate(self.hint_node, gui.PROP_COLOR, vmath.vector4(1, 1, 1, 1), gui.EASING_OUTQUAD, HINT_FADE_IN, 0, function()
-		timer.delay(HINT_VISIBLE_TIME, false, function()
-			gui.animate(self.hint_node, gui.PROP_COLOR, vmath.vector4(1, 1, 1, 0), gui.EASING_INQUAD, HINT_FADE_OUT)
+	gui.animate(self.hint_node, gui.PROP_COLOR, vmath.vector4(1, 1, 1, 1), gui.EASING_OUTQUAD, constants.HINT_FADE_IN, 0, function()
+		timer.delay(constants.HINT_VISIBLE_TIME, false, function()
+			gui.animate(self.hint_node, gui.PROP_COLOR, vmath.vector4(1, 1, 1, 0), gui.EASING_INQUAD, constants.HINT_FADE_OUT)
 		end)
 	end)
 end
@@ -34,16 +25,13 @@ function init(self)
 	self.money_node = gui.get_node("money_text")
 	self.buy_button = gui.get_node("buy_button")
 
-	-- ВАЖНО: эти два node нужно добавить в interaction.gui в редакторе Defold:
-	-- "field_counter_text" — текстовый node внизу экрана для счётчика "3/10"
-	-- "field_hint_text"    — текстовый node для подсказки "Поле заполнено" (изначально скрыт)
 	self.field_counter_node = gui.get_node("field_counter_text")
 	self.hint_node = gui.get_node("field_hint_text")
 
 	self.field_counter_color = gui.get_color(self.field_counter_node)
 	self.buy_button_color = gui.get_color(self.buy_button)
 
-	gui.set_text(self.hint_node, HINT_TEXT)
+	gui.set_text(self.hint_node, constants.HINT_TEXT)
 	gui.set_color(self.hint_node, vmath.vector4(1, 1, 1, 0))
 
 	msg.post(".", "acquire_input_focus")
@@ -74,7 +62,7 @@ function on_input(self, action_id, action)
 	elseif action.released then
 		if gui.pick_node(self.buy_button, action.x, action.y) then
 			press.gui_up(self.buy_button)
-			
+
 			msg.post(constants.MAIN_SCRIPT, "buy_card")
 			msg.post("#interaction", "update_money_ui", { money = cards_manager.get_money() })
 		end

@@ -26,10 +26,10 @@ M.cards = {
 
 M.merges = {
 	["Zero Two"] = {
-		["Sakura"] = "MergedHero"
+		["Zero Two"] = "Sakura"
 	},
 	["Sakura"] = {
-		["Zero Two"] = "MergedHero"
+		["Sakura"] = "MergedHero"
 	}
 }
 

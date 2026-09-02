@@ -25,7 +25,6 @@ function init(self)
 		go.set("#reward_text", "color", vmath.vector4(1, 1, 1, 0))
 	else
 		self.has_reward_text = false
-		print("WARN: 'reward_text' component not found on card.go — add a Label component with id 'reward_text' to see the '+reward' popup")
 	end
 
 	msg.post(".", "acquire_input_focus")

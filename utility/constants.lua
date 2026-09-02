@@ -27,6 +27,13 @@ M.DRAG_Z = 0.5
 
 M.SAVE_NAME = "player_save"
 
+M.FLASH_COLOR = vmath.vector4(1, 0.25, 0.25, 1)
+M.FLASH_DURATION = 0.12
+M.HINT_TEXT = "Поле заполнено"
+M.HINT_VISIBLE_TIME = 1.2
+M.HINT_FADE_IN = 0.15
+M.HINT_FADE_OUT = 0.25
+
 M.DEFAULT_PLAYER = {
 	money = 0,
 	field_cards = {
