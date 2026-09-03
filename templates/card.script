@@ -1,3 +1,4 @@
+---card.script
 local cards_manager = require("gameplay.cards.cards_manager")
 local constants = require("utility.constants")
 local press = require("utility.press_animator")

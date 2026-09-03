@@ -1,4 +1,6 @@
+---interaction.gui_script
 local cards_manager = require("gameplay.cards.cards_manager")
+local number_format = require("utility.number_format")
 
 local constants = require("utility.constants")
 local press = require("utility.press_animator")
@@ -6,23 +8,31 @@ local press = require("utility.press_animator")
 local function flash_red(node, original_color)
 	gui.cancel_animations(node, gui.PROP_COLOR)
 
+	-- Сразу показываем красный цвет
+	gui.set_color(node, constants.FLASH_COLOR)
+
+	-- Затем возвращаем обычный цвет
 	gui.animate(
 	node,
 	gui.PROP_COLOR,
-	constants.FLASH_COLOR,
-	gui.EASING_OUTQUAD,
-	constants.FLASH_DURATION,
-	0,
-	gui.PLAYBACK_ONCE_FORWARD,
-	function()
-		gui.animate(
-		node,
-		gui.PROP_COLOR,
-		original_color,
-		gui.EASING_INQUAD,
-		constants.FLASH_DURATION
-	)
+	original_color,
+	gui.EASING_INQUAD,
+	constants.FLASH_DURATION
+)
 end
+
+local function restore_normal_colors(self)
+	gui.cancel_animations(self.field_counter_node, gui.PROP_COLOR)
+	gui.cancel_animations(self.buy_button, gui.PROP_COLOR)
+
+	gui.set_color(
+	self.field_counter_node,
+	self.field_counter_color
+)
+
+gui.set_color(
+self.buy_button,
+self.buy_button_color
 )
 end
 
@@ -78,16 +88,34 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("update_money_ui") then
-		gui.set_text(self.money_node, tostring(message.money))
+		gui.set_text(
+		self.money_node,
+		number_format.format(message.money)
+	)
 
-	elseif message_id == hash("update_field_ui") then
-		gui.set_text(self.field_counter_node, message.count .. "/" .. message.max)
+elseif message_id == hash("update_field_ui") then
+	gui.set_text(
+	self.field_counter_node,
+	message.count .. "/" .. message.max
+)
 
-	elseif message_id == hash("field_full") then
-		flash_red(self.field_counter_node, self.field_counter_color)
-		flash_red(self.buy_button, self.buy_button_color)
-		show_hint(self)
-	end
+if message.count < message.max then
+	restore_normal_colors(self)
+end
+
+elseif message_id == hash("field_full") then
+flash_red(
+self.field_counter_node,
+self.field_counter_color
+)
+
+flash_red(
+self.buy_button,
+self.buy_button_color
+)
+
+show_hint(self)
+end
 end
 
 function on_input(self, action_id, action)

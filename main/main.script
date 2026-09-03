@@ -1,3 +1,4 @@
+---main.script
 local player = require("utility.player")
 local cards_manager = require("gameplay.cards.cards_manager")
 local constants = require("utility.constants")
